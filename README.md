@@ -1,6 +1,6 @@
 # web-components
 
-| Web Components | Latest Version | Url
+| Scope | Latest Version | Url
 | - | - | -
 | int333 | 0.0.3 | https://github.com/pandevim/int333/
 | ramabana | 0.0.0 | https://github.com/
