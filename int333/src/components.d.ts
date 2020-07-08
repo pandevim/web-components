@@ -6,56 +6,45 @@
  */
 import { HTMLStencilElement, JSXBase } from "@stencil/core/internal";
 export namespace Components {
-    interface MyComponent {
-        /**
-          * The first name
-         */
-        "first": string;
-        /**
-          * The last name
-         */
-        "last": string;
-        /**
-          * The middle name
-         */
-        "middle": string;
+    interface ElForm {
+    }
+    interface ElSpinner {
     }
 }
 declare global {
-    interface HTMLMyComponentElement extends Components.MyComponent, HTMLStencilElement {
+    interface HTMLElFormElement extends Components.ElForm, HTMLStencilElement {
     }
-    var HTMLMyComponentElement: {
-        prototype: HTMLMyComponentElement;
-        new (): HTMLMyComponentElement;
+    var HTMLElFormElement: {
+        prototype: HTMLElFormElement;
+        new (): HTMLElFormElement;
+    };
+    interface HTMLElSpinnerElement extends Components.ElSpinner, HTMLStencilElement {
+    }
+    var HTMLElSpinnerElement: {
+        prototype: HTMLElSpinnerElement;
+        new (): HTMLElSpinnerElement;
     };
     interface HTMLElementTagNameMap {
-        "my-component": HTMLMyComponentElement;
+        "el-form": HTMLElFormElement;
+        "el-spinner": HTMLElSpinnerElement;
     }
 }
 declare namespace LocalJSX {
-    interface MyComponent {
-        /**
-          * The first name
-         */
-        "first"?: string;
-        /**
-          * The last name
-         */
-        "last"?: string;
-        /**
-          * The middle name
-         */
-        "middle"?: string;
+    interface ElForm {
+    }
+    interface ElSpinner {
     }
     interface IntrinsicElements {
-        "my-component": MyComponent;
+        "el-form": ElForm;
+        "el-spinner": ElSpinner;
     }
 }
 export { LocalJSX as JSX };
 declare module "@stencil/core" {
     export namespace JSX {
         interface IntrinsicElements {
-            "my-component": LocalJSX.MyComponent & JSXBase.HTMLAttributes<HTMLMyComponentElement>;
+            "el-form": LocalJSX.ElForm & JSXBase.HTMLAttributes<HTMLElFormElement>;
+            "el-spinner": LocalJSX.ElSpinner & JSXBase.HTMLAttributes<HTMLElSpinnerElement>;
         }
     }
 }

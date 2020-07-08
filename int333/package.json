@@ -1,5 +1,5 @@
 {
-  "name": "int333",
+  "name": "@pandevim/int333",
   "version": "0.0.1",
   "description": "Stencil Component Starter",
   "main": "dist/index.js",
@@ -9,7 +9,7 @@
   "types": "dist/types/index.d.ts",
   "collection": "dist/collection/collection-manifest.json",
   "collection:main": "dist/collection/index.js",
-  "unpkg": "dist/int333/int333.js",
+  "unpkg": "dist/main.js",
   "files": [
     "dist/",
     "loader/"
@@ -19,10 +19,15 @@
     "start": "stencil build --dev --watch --serve",
     "test": "stencil test --spec --e2e",
     "test.watch": "stencil test --spec --e2e --watchAll",
-    "generate": "stencil generate"
+    "generate": "stencil generate",
+    "prepublishOnly": "build"
   },
   "devDependencies": {
     "@stencil/core": "^1.12.2"
+  },
+  "publishConfig": {
+    "registry": "https://registry.npmjs.org/",
+    "access": "public"
   },
   "license": "MIT"
 }

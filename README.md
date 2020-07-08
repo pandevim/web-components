@@ -8,15 +8,11 @@ $ cd web-components/
 ```
 ```bash
 /web-components $ # Create project container from web image
-/web-components $ docker run --interactive --tty --detach \
+/web-components $ docker run --interactive --tty \
 --name web-components \
 --mount type=bind,source=`pwd`,target=/app \
 --publish 3333:3333 \
 pandevim/web
-```
-```bash
-/web-components $ # Start project container
-/web-components $ docker exec --interactive --tty web-components bash
 ```
 ```bash
 /app $ # Some boilerplate setup
@@ -31,8 +27,7 @@ pandevim/web
 ```bash
 /app $ # Create github repo and push
 /app $ hub create web-components
-/app $ hub remote add origin git@github.com:pandevim/web-components.git
-/app $ hub push -u origin master
+/app $ hub push
 ```
 ```bash
 /app $ # Create components scope <scope>
@@ -44,18 +39,4 @@ pandevim/web
 /<scope> $ rm -rf src/components/my-component
 /<scope> $ yarn generate <component-name>
 ```
-```bash
-$ # Test
-$ docker exec -it container-web-components bash
-/<scope> $ yarn test
-```
-```bash
-$ # Start the local server
-$ docker exec -it container-web-components bash
-/<scope> $ yarn start
-```
-```bash
-$ # Build the component
-$ docker exec -it container-web-components bash
-/<scope> $ yarn build
-```
+
