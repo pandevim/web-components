@@ -1,6 +1,6 @@
 {
   "name": "@pandevim/int333",
-  "version": "0.0.1",
+  "version": "0.0.3",
   "description": "Stencil Component Starter",
   "main": "dist/index.js",
   "module": "dist/index.mjs",
@@ -9,7 +9,7 @@
   "types": "dist/types/index.d.ts",
   "collection": "dist/collection/collection-manifest.json",
   "collection:main": "dist/collection/index.js",
-  "unpkg": "dist/main.js",
+  "unpkg": "dist/int333.js",
   "files": [
     "dist/",
     "loader/"

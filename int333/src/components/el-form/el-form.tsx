@@ -10,7 +10,7 @@ export class ElForm implements ComponentInterface {
   render() {
     return (
       <Host>
-        <slot></slot>
+        <p>Hi, I'm a form</p>
       </Host>
     );
   }
