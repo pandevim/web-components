@@ -36,4 +36,5 @@ jobs:
       uses: actions/checkout@master
 
     - name: Publish all changed scope directories to NPM
-      run: echo ${{needs.detect-scope.file_changes.outputs.files}}
+      run: echo ${{needs.detect-scope.file_changes.outputs}}
+
