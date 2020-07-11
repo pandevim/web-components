@@ -11,9 +11,7 @@ on:
     branches: master
 
     # Only detect changes in package.json file
-    paths: 
-      - 'int333/package.json'
-      - 'ramabana/package.json'
+    paths: '*/package.json'
 
 
 jobs:
