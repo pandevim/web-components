@@ -1,12 +1,22 @@
-name: Publish Web Components to NPM
+
+
+name: Publish to NPM Registry
 
 on:
+
+  # Trigger on push event
   push:
+
+    # Only monitor master branch
     branches: master
+
+    # Only detect changes in package.json file
+    paths: package.json
+
 
 jobs:
 
-  detect-change:
+  detect-scope:
     runs-on: ubuntu-latest
     steps:
 
@@ -18,6 +28,7 @@ jobs:
 
 
   publish:
+    needs: detect-scope
     runs-on: ubuntu-latest
     steps:
 
