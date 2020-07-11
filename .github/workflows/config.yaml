@@ -28,7 +28,7 @@ jobs:
     - name: Check for package.json change
       run: |
         echo "CHECK"
-        echo pwd
+        pwd
 
 
   publish:
