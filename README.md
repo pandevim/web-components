@@ -15,7 +15,7 @@ $ cd web-components/
 /web-components $ echo "# web-components" > README.md
 ```
 ```bash
-/web-components $ # Create project container from web image
+/web-components $ # Create project container from web image and bind correct directory
 /web-components $ docker run --interactive --tty \
 --name web-components \
 --mount type=bind,source=`pwd`,target=/app \

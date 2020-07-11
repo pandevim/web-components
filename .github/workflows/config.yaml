@@ -1,0 +1,28 @@
+name: Publish Web Components to NPM
+
+on:
+  push:
+    branches: master
+
+jobs:
+
+  detect-change:
+    runs-on: ubuntu-latest
+    steps:
+
+    # Checks-out your repository under $GITHUB_WORKSPACE, so your job can access it
+    - uses: actions/checkout@master
+
+    - name: Check for package.json change
+      run: echo "CHECK"
+
+
+  publish:
+    runs-on: ubuntu-latest
+    steps:
+
+    # Checks-out your repository under $GITHUB_WORKSPACE, so your job can access it
+    - uses: actions/checkout@master
+
+    - name: Publish all changed scope directories to NPM
+      run: echo "PUBLISH"
