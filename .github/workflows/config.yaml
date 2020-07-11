@@ -25,6 +25,8 @@ jobs:
 
     - id: file_changes
       uses: trilom/file-changes-action@master
+      with:
+        githubToken: ${{ secrets.GITHUB_TOKEN }}
 
 
   publish:
