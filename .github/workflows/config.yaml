@@ -20,22 +20,20 @@ jobs:
     runs-on: ubuntu-latest
     steps:
 
-    # Checks-out your repository under $GITHUB_WORKSPACE, so your job can access it
-    - uses: actions/checkout@master
+    - id: checkout_current_repo
+      uses: actions/checkout@master
 
-    - name: Check for package.json change
-      run: |
-        echo "CHECK"
-        pwd
+    - id: file_changes
+      uses: trilom/file-changes-action@master
 
 
   publish:
-    needs: detect-scope
     runs-on: ubuntu-latest
+    needs: detect-scope
     steps:
 
-    # Checks-out your repository under $GITHUB_WORKSPACE, so your job can access it
-    - uses: actions/checkout@master
+    - id: checkout_current_repo
+      uses: actions/checkout@master
 
     - name: Publish all changed scope directories to NPM
-      run: echo "PUBLISH"
+      run: echo ${{needs.detect-scope.file_changes.outputs.files}}
