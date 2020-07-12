@@ -37,9 +37,7 @@ jobs:
     needs: detect-change
     steps:
 
-    - name: Checks-out your repository under $GITHUB_WORKSPACE, so your job can access it
-      uses: actions/checkout@v2
-
     - name: detect the scope directory
       run: echo '${{ needs.detect-change.outputs.files }}'
+
 
