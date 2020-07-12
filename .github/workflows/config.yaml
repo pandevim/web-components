@@ -3,48 +3,34 @@
 name: Publish to NPM Registry
 
 on:
-
-  # Trigger on push event
+  
   push:
-
-    # Only monitor master branch
     branches: master
-
-    # Only detect changes in package.json file
     paths: '*/package.json'
-
 
 jobs:
 
   detect-change:
     runs-on: ubuntu-latest
-
     outputs:
       files: ${{ steps.file_changes.outputs.files }}
-
     steps:
-
     - uses: actions/checkout@v2
-
     - id: file_changes
       uses: trilom/file-changes-action@v1.2.3
 
   detect-dir:
     runs-on: ubuntu-latest
     needs: detect-change
-
     outputs:
       dir: ${{ steps.trim_dir_name.outputs.dir }}
-
     steps:
-
     - id: get_dir_name
       uses: AsasInnab/regex-action@v1
       with:
         regex_pattern: '(\w+)\/package.json'
         regex_flags: 'm'
         search_string: '${{ needs.detect-change.outputs.files }}'
-
     - id: trim_dir_name
       name: Get the dir name from regex selection
       run: |
@@ -57,18 +43,12 @@ jobs:
     defaults:
       run:
         working-directory: ${{ needs.detect-dir.outputs.dir }}
-
     steps:
-
     - uses: actions/checkout@v2
-
     - uses: actions/setup-node@master
       with:
         node-version: 14.0.0
-
-    - name: Publish to NLP if version has been updated
-      uses: pascalgn/npm-publish-action@4f4bf159e299f65d21cd1cbd96fc5d53228036df
+    - uses: pascalgn/npm-publish-action@4f4bf159e299f65d21cd1cbd96fc5d53228036df
       env:
         GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         NPM_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
-
