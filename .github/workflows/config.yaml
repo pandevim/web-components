@@ -62,10 +62,8 @@ jobs:
       with:
         node-version: 14.0.0
 
-    - name: Change working dir to scope
-      working-directory: ${{ needs.detect-scope.outputs.scope }}
-
     - name: publish
+      working-directory: ${{ needs.detect-scope.outputs.scope }}
       run: ls -la
 
     # - name: Publish to NLP if version has been updated
