@@ -17,7 +17,12 @@ on:
 jobs:
 
   detect-scope:
+
     runs-on: ubuntu-latest
+
+    outputs:
+      files: ${{ steps.file_changes.outputs.files }}
+
     steps:
 
     - id: checkout_current_repo
@@ -25,8 +30,6 @@ jobs:
 
     - id: file_changes
       uses: trilom/file-changes-action@master
-      # with:
-      #   githubToken: ${{ secrets.GITHUB_TOKEN }}
 
     - id: test_output_check
       name: test
@@ -42,5 +45,5 @@ jobs:
       uses: actions/checkout@master
 
     - name: Publish all changed scope directories to NPM
-      run: echo '${{ needs.detect-scope.steps.file_changes.outputs.files }}'
+      run: echo '${{ needs.detect-scope.outputs.files }}'
 
