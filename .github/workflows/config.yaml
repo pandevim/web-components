@@ -40,21 +40,27 @@ jobs:
 
     steps:
 
-    - name: detect the scope directory
-      run: echo '${{ needs.detect-change.outputs.files }}'
-
     - id: get_scope
       name: Get scope as output using regex
       uses: AsasInnab/regex-action@v1
       with:
         regex_pattern: '(\w+)\/package.json'
-        regex_flags: 'gim'
+        regex_flags: 'gm'
         search_string: '${{ needs.detect-change.outputs.files }}'
 
   publish:
     runs-on: ubuntu-latest
     needs: detect-scope
     steps:
+
+    - name: Checks-out your repository under $GITHUB_WORKSPACE, so your job can access it
+      uses: actions/checkout@v2
+      with:
+        path: '/ramabana'
+
+    - name: publish
+      run: pwd
+
     - name: publish
       run: echo '${{ needs.detect-scope.outputs.scope }}'
 
