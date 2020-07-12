@@ -40,13 +40,16 @@ jobs:
 
     steps:
 
+    - name: detect the scope directory
+      run: echo '${{ needs.detect-change.outputs.files }}'
+
     - id: get_scope
       name: Get scope as output using regex
       uses: AsasInnab/regex-action@v1
       with:
         regex_pattern: '(\w+)\/package.json'
         regex_flags: 'gim'
-        search_string: '${{ needs.detect-scope.outputs.files }}'
+        search_string: '${{ needs.detect-change.outputs.files }}'
 
   publish:
     runs-on: ubuntu-latest
