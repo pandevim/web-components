@@ -43,6 +43,9 @@ jobs:
 
     steps:
 
+    - name: Checks-out your repository under $GITHUB_WORKSPACE, so your job can access it
+      uses: actions/checkout@v2
+
     - name: test kr rha bia
       run: echo `${{ needs.detect-scope.outputs.files }}`
 
