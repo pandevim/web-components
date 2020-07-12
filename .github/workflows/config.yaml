@@ -30,7 +30,7 @@ jobs:
 
     - id: test_output_check
       name: test
-      run: echo '${{ steps.file_changes.outputs}}'
+      run: echo '${{ steps.file_changes.outputs }}' | python -m json.tool
 
 
   publish:
