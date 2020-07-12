@@ -63,7 +63,8 @@ jobs:
       with:
         node-version: 14.0.0
 
-    - run: ls -la
+    - name: test mafik
+      run: ls -la
 
     # - name: Publish to NLP if version has been updated
     #   uses: pascalgn/npm-publish-action@4f4bf159e299f65d21cd1cbd96fc5d53228036df
