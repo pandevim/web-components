@@ -25,20 +25,21 @@ jobs:
 
     steps:
 
-    - id: checkout_current_repo
+    - name: Checks-out your repository under $GITHUB_WORKSPACE, so your job can access it
       uses: actions/checkout@v2
 
     - id: file_changes
+      name: https://github.com/marketplace/actions/file-changes-action
       uses: trilom/file-changes-action@v1.2.3
 
-  publish:
+  detect-scope:
     runs-on: ubuntu-latest
     needs: detect-change
     steps:
 
-    - id: checkout_current_repo
+    - name: Checks-out your repository under $GITHUB_WORKSPACE, so your job can access it
       uses: actions/checkout@v2
 
-    - name: Publish all changed scope directories to NPM
+    - name: detect the scope directory
       run: echo '${{ needs.detect-change.outputs.files }}'
 
