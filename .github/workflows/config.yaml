@@ -28,6 +28,10 @@ jobs:
       with:
         githubToken: ${{ secrets.GITHUB_TOKEN }}
 
+    - id: test_output_check
+      name: test
+      run: echo '${{ steps.file_changes.outputs.files}}'
+
 
   publish:
     runs-on: ubuntu-latest
