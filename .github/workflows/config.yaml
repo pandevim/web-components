@@ -56,9 +56,9 @@ jobs:
     - name: Checks-out your repository under $GITHUB_WORKSPACE, so your job can access it
       uses: actions/checkout@v2
       with:
-        path: '/ramabana'
+        path: 'ramabana/'
 
-    - name: publish
+    - name: check dir
       run: pwd
 
     - name: publish
