@@ -63,7 +63,7 @@ jobs:
         node-version: 14.0.0
 
     - name: Change working dir to scope
-      run: cd ${{ needs.detect-scope.outputs.scope }}
+      working-directory: ${{ needs.detect-scope.outputs.scope }}
 
     - name: publish
       run: ls -la
