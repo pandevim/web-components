@@ -64,6 +64,7 @@ jobs:
 
     - name: Change directory to scope
       working-directory: ${{ needs.detect-scope.outputs.scope }}
+      run: ls -la
 
     - name: publish
       run: ls -la    
