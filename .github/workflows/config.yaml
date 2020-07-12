@@ -29,31 +29,31 @@ jobs:
     - id: file_changes
       uses: trilom/file-changes-action@v1.2.3
 
-  detect-scope:
+  detect-dir:
     runs-on: ubuntu-latest
     needs: detect-change
 
     outputs:
-      scope: ${{ steps.trim_scope.outputs.scope }}
+      dir: ${{ steps.trim_dir_name.outputs.dir }}
 
     steps:
 
-    - id: get_scope
+    - id: get_dir_name
       uses: AsasInnab/regex-action@v1
       with:
         regex_pattern: '(\w+)\/package.json'
         regex_flags: 'm'
         search_string: '${{ needs.detect-change.outputs.files }}'
 
-    - id: trim_scope
-      name: Get the scope value from regex selection
+    - id: trim_dir_name
+      name: Get the dir name from regex selection
       run: |
-        scope_dir="$(cut -d'/' -f1 <<<"${{ steps.get_scope.outputs.first_match }}")"
-        echo "::set-output name=scope::$scope_dir"
+        dir="$(cut -d'/' -f1 <<<"${{ steps.get_dir_name.outputs.first_match }}")"
+        echo "::set-output name=dir::$dir"
 
   publish:
     runs-on: ubuntu-latest
-    needs: detect-scope
+    needs: detect-dir
     steps:
 
     - uses: actions/checkout@v2
@@ -62,12 +62,12 @@ jobs:
       with:
         node-version: 14.0.0
 
-    - name: Change directory to scope
-      working-directory: ${{ needs.detect-scope.outputs.scope }}
+    - name: Change directory to release directory
+      working-directory: ${{ needs.detect-dir.outputs.dir }}
       run: ls -la
 
     - name: publish
-      run: ls -la    
+      run: ls -la
 
     # - name: Publish to NLP if version has been updated
     #   uses: pascalgn/npm-publish-action@4f4bf159e299f65d21cd1cbd96fc5d53228036df
