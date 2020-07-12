@@ -24,11 +24,9 @@ jobs:
 
     steps:
 
-    - name: Checks-out your repository under $GITHUB_WORKSPACE, so your job can access it
-      uses: actions/checkout@v2
+    - uses: actions/checkout@v2
 
     - id: file_changes
-      name: https://github.com/marketplace/actions/file-changes-action
       uses: trilom/file-changes-action@v1.2.3
 
   detect-scope:
@@ -41,11 +39,10 @@ jobs:
     steps:
 
     - id: get_scope
-      name: Get scope as output using regex
       uses: AsasInnab/regex-action@v1
       with:
         regex_pattern: '(\w+)\/package.json'
-        regex_flags: 'gim'
+        regex_flags: ''
         search_string: '${{ needs.detect-change.outputs.files }}'
 
     - id: trim_scope
@@ -59,9 +56,19 @@ jobs:
     needs: detect-scope
     steps:
 
-    - name: Checks-out your repository under $GITHUB_WORKSPACE, so your job can access it
-      uses: actions/checkout@v2
+    - uses: actions/checkout@v2
+      run: cd ${{ needs.detect-scope.outputs.scope }}
 
-    - name: publish
-      run: echo '${{ needs.detect-scope.outputs.scope }}'
+    - uses: actions/setup-node@master
+      with:
+        node-version: 14.0.0
+      run: ls -la
+
+    # - name: Publish to NLP if version has been updated
+    #   uses: pascalgn/npm-publish-action@4f4bf159e299f65d21cd1cbd96fc5d53228036df
+    #   with:
+    #     commit_pattern: "^Release (\S+)"
+    #   env:
+    #     GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+    #     NPM_AUTH_TOKEN: ${{ secrets.NPM_AUTH_TOKEN }}
 
