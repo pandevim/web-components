@@ -56,10 +56,10 @@ jobs:
     - name: Checks-out your repository under $GITHUB_WORKSPACE, so your job can access it
       uses: actions/checkout@v2
       with:
-        path: 'ramabana/'
+        path: './ramabana/'
 
     - name: check dir
-      run: pwd
+      run: ls -la
 
     - name: publish
       run: echo '${{ needs.detect-scope.outputs.scope }}'
