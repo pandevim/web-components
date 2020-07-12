@@ -42,7 +42,7 @@ jobs:
       uses: AsasInnab/regex-action@v1
       with:
         regex_pattern: '(\w+)\/package.json'
-        regex_flags: ''
+        regex_flags: 'm'
         search_string: '${{ needs.detect-change.outputs.files }}'
 
     - id: trim_scope
