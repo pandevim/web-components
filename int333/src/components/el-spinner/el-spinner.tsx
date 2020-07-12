@@ -10,7 +10,9 @@ export class ElSpinner implements ComponentInterface {
   render() {
     return (
       <Host>
-        <p>Hi, I'm a spinner</p>
+        <slot>
+          <p>Hi, I'm a spinner</p>
+        </slot>
       </Host>
     );
   }

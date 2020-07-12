@@ -1,4 +1,5 @@
-# int333@0.0.3
+# int333
+Check version in [package.json](./package.json)
 
 | Web Components | Description
 | - | -
