@@ -63,7 +63,10 @@ jobs:
       with:
         node-version: 14.0.0
 
-    - name: test mafik
+    - name: Change working dir to scope
+      run: cd ${{ needs.detect-scope.outputs.scope }}
+
+    - name: publish
       run: ls -la
 
     # - name: Publish to NLP if version has been updated
